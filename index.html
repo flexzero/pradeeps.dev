@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="header">
+        <a href="#"><img id="logo" src="logo.png" width="140" height="80" alt="company-logo" /></a>
+    </header>
+    <canvas id="main-canvas">
+
+    </canvas>
+    <main id="main">
+        <section id="hero">
+            <p>Welcome to the space of</p>
+            <div id="first-name">Pradeepsinh</div>
+            <div id="last-name">Sindhav</div>
+            <p id="description">👋 Pradeepsinh Sindhav 👨 is a freelance web 🌐 and mobile 📱 developer, working remotely,
+                he can help you to present your business online, which can boost your business sales 📈 
+                & income 💵 and reduce the time ⌛ required to operate the business, by making websites
+                and mobile application as per as your needs. this site is under currently under construction
+                you can contact pradeep via his <span><a href="mailto:pradeepsindhav2015@gmail.com" subject="hi pradeep i want to discuss a project with you">email</a></span> .
+            </p>
+        </section>
+    </main>
+    <script type="text/paperscript" canvas="main-canvas">
+        var config = {
+            'count': 80,
+            'speed': 10
+        }
+
+        function getRandom(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Shapes
+        var Shape = function (type) {
+
+            var type = type;
+            var color = randomColor({
+                luminosity: 'light',
+                format: 'rgba',
+                alpha: 1
+            });
+
+            if (type === 1) {
+                // Circle
+                var circle = new Path.Circle({
+                    radius: getRandom(1, 30),
+                });
+                circle.strokeColor = color;
+                circle.fillColor = color;
+                return circle;
+
+            } else if (type === 2) {
+                // Square
+                var square = new Path();
+                square.strokeColor = color;
+                square.fillColor = color;
+                square.add(new Point(0, 50));
+                square.add(new Point(50, 50));
+                square.add(new Point(50, 0));
+                square.add(new Point(0, 0));
+                square.strokeJoin = 'round';
+                square.closed = true;
+                square.scale(Math.random() + 0.1);
+                square.rotate(Math.random() * 360);
+                return square
+
+            } else if (type === 3) {
+                // Triangle
+                var triangle = new Path();
+                triangle.strokeColor = color;
+                triangle.fillColor = color;
+                triangle.add(new Point(0, 50));
+                triangle.add(new Point(50, 50));
+                triangle.add(new Point(25, 0));
+                triangle.strokeJoin = 'round';
+                triangle.closed = true;
+                triangle.scale(Math.random() + 0.1);
+                triangle.rotate(Math.random() * 360);
+                return triangle;
+
+            } else if (type === 4) {
+                // Cross
+                var cross1 = new Path();
+                cross1.strokeColor = color;
+                cross1.add(new Point(25, 0));
+                cross1.add(new Point(25, 50));
+                cross1.strokeCap = 'round';
+
+                var cross2 = new Path();
+                cross2.strokeColor = color;
+                cross2.add(new Point(0, 25));
+                cross2.add(new Point(50, 25));
+                cross2.strokeCap = 'round';
+
+                var cross = new Group([cross1, cross2]);
+                cross.rotate(Math.random() * 360);
+                cross.scale(Math.random() + 0.1);
+                return cross;
+            }
+        }
+
+        // Place the instances of the symbol:
+        for (var i = 0; i < config.count; i++) {
+            // The center position is a random point in the view:
+
+            var center = new Point(Point.random() * view.size);
+            var scale = (i + 1) / config.count;
+            var shape = new Shape(getRandom(1, 4));
+            shape.position = center;
+            shape.data.vector = new Point({
+                angle: Math.random() * 360,
+                length: scale * Math.random() / 5
+            });
+        }
+
+        var vector = new Point({
+            angle: 45,
+            length: 0
+        });
+
+        view.onFrame = function (event) {
+
+            vector = vector / 30;
+
+            // Run through the active layer's children list and change
+            // the position of the placed symbols:
+            for (var i = 0; i < config.count; i++) {
+                var item = project.activeLayer.children[i];
+                var size = item.bounds.size;
+                var length = vector.length / 10 * size.width / 10;
+                item.position += (vector.normalize(length) + item.data.vector) * config.speed;
+                keepInView(item);
+            }
+        };
+
+        function keepInView(item) {
+            var position = item.position;
+            var itemBounds = item.bounds;
+            var bounds = view.bounds;
+            if (itemBounds.left > bounds.width) {
+                position.x = -item.bounds.width;
+            }
+
+            if (position.x < -itemBounds.width) {
+                position.x = bounds.width + itemBounds.width;
+            }
+
+            if (itemBounds.top > view.size.height) {
+                position.y = -itemBounds.height;
+            }
+
+
+            if (position.y < -itemBounds.height) {
+                position.y = bounds.height + itemBounds.height / 2;
+            }
+        }
+    </script>
+    <script type="text/javascript" src="./script.js"></script>
+</body>
+
+</html>

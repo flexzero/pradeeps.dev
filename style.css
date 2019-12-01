@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Lobster|Montserrat|Solway|Source+Sans+Pro&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+header {
+    position: relative;
+    background: transparent;
+    z-index: 200;
+    padding: 2rem;
+}
+
+#main {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.scroll-header {
+    position: fixed !important;
+}
+
+#hero {
+    position: relative;
+    z-index: 200;
+    padding: 2rem;
+}
+
+#hero * {
+    margin: 2rem auto;
+}
+
+
+
+#hero p {
+    font-size: 2rem;
+    font-family: 'Bebas Neue', cursive;
+}
+
+#hero #first-name, #hero #last-name {
+    padding: 0 2rem;
+    font-size: 7rem;
+    font-weight: bold;
+    font-family: 'Lobster', cursive;
+}
+
+#hero #first-name {
+    margin-bottom: 0;
+}
+
+#hero #last-name {
+    margin-top: -2rem;
+    margin-left: 7rem;
+}
+
+#main-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 100;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.03);
+    
+    z-index: 150;
+}
+
+#hero #description {
+    margin: auto 0;
+    letter-spacing: 2px;
+    max-width: 500px;
+    text-align: justify;
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-family: 'Solway', serif;
+}
+
+#description span {
+    font-weight: bold;
+    background-color: blue;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Solway', serif;
+}
+
+#description span a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+@media (max-width: 640px) {
+    #hero #first-name, #hero #last-name {
+        padding: 0 2rem;
+        font-size: 5rem;
+        font-weight: bold;
+        font-family: 'Lobster', cursive;
+    }
+
+    #hero {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #hero {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
