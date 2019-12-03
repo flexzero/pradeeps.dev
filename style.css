@@ -17,6 +17,7 @@ header {
     display: flex;
     align-items: center;
     height: 100vh;
+    margin-bottom: 3rem;
 }
 
 .scroll-header {
@@ -112,6 +113,10 @@ body::before {
         text-align: center;
         margin: 0 auto;
     }
+
+    #hero #description {
+        margin-bottom: 10rem;
+    }
 }
 
 @media (max-width: 510px) {
@@ -132,9 +137,10 @@ body::before {
         letter-spacing: 2px;
         max-width: 400px;
         text-align: justify;
-        font-size: 1.22rem;
+        font-size: 1.20rem;
         font-weight: 500;
         font-family: 'Source Sans Pro', sans-serif;
+        margin-bottom: 10px;
     }
 }
 
