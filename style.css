@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Lobster|Montserrat|Solway|Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro|Bebas+Neue|Lobster|Montserrat|Solway|Source+Sans+Pro&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -83,7 +83,7 @@ body::before {
     text-align: justify;
     font-size: 1.25rem;
     font-weight: 500;
-    font-family: 'Solway', serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #description span {
@@ -92,7 +92,7 @@ body::before {
     padding: 0 0.5rem;
     border-radius: 5px;
     color: white;
-    font-family: 'Solway', serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #description span a {
@@ -111,6 +111,30 @@ body::before {
     #hero {
         text-align: center;
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 510px) {
+    #hero #first-name, #hero #last-name {
+        padding: 0 2rem;
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: 'Lobster', cursive;
+    }
+
+    #hero {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #hero #description {
+        margin: auto 0;
+        letter-spacing: 2px;
+        max-width: 400px;
+        text-align: justify;
+        font-size: 1.20rem;
+        font-weight: 400;
+        font-family: 'Source Sans Pro', sans-serif;
     }
 }
 
